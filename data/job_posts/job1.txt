@@ -1,1 +1,0 @@
-We are looking for a backend Python developer familiar with Flask and REST APIs.
