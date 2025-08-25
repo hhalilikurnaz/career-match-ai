@@ -3,10 +3,13 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const helmet = require("helmet")
 const rateLimit = require("express-rate-limit")
+const { createDirectories } = require("./utils/fileSystem")
 require("dotenv").config()
 
 const app = express()
 const PORT = process.env.PORT || 5000
+
+createDirectories()
 
 // Security middleware
 app.use(helmet())
@@ -71,6 +74,7 @@ app.use("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
   console.log(`Environment: ${process.env.NODE_ENV || "development"}`)
+  console.log("AI-powered CV analysis system ready!")
 })
 
 module.exports = app
