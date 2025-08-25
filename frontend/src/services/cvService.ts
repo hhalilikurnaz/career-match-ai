@@ -12,11 +12,63 @@ export interface CVUploadResponse {
 export interface CVAnalysisResponse {
   message: string
   results: {
-    score: number
+    overallScore: number
+    sections: {
+      personalInfo: {
+        score: number
+        feedback: string[]
+        suggestions: string[]
+      }
+      experience: {
+        score: number
+        feedback: string[]
+        suggestions: string[]
+      }
+      education: {
+        score: number
+        feedback: string[]
+        suggestions: string[]
+      }
+      skills: {
+        score: number
+        feedback: string[]
+        suggestions: string[]
+      }
+      formatting: {
+        score: number
+        feedback: string[]
+        suggestions: string[]
+      }
+    }
     strengths: string[]
     improvements: string[]
-    suggestions: string[]
+    keywords: string[]
+    missingKeywords: string[]
     analyzedAt: string
+    aiModel: string
+  }
+  processingTime?: string
+}
+
+export interface JobCompatibilityResponse {
+  message: string
+  results: {
+    compatibilityScore: number
+    matchingSkills: string[]
+    missingSkills: string[]
+    recommendations: string[]
+    detailedAnalysis: string
+  }
+}
+
+export interface ImprovementSuggestionsResponse {
+  message: string
+  suggestions: {
+    prioritySuggestions: string[]
+    contentSuggestions: string[]
+    formattingSuggestions: string[]
+    keywordSuggestions: string[]
+    overallRecommendation: string
   }
 }
 
@@ -55,6 +107,25 @@ export const cvService = {
 
   async getAnalysisResults(cvId: string) {
     const response = await api.get(`/analysis/results/${cvId}`)
+    return response.data
+  },
+
+  async analyzeJobCompatibility(
+    cvId: string,
+    jobDescription: string,
+    jobTitle?: string,
+  ): Promise<JobCompatibilityResponse> {
+    const response = await api.post(`/analysis/job-compatibility/${cvId}`, {
+      jobDescription,
+      jobTitle,
+    })
+    return response.data
+  },
+
+  async getImprovementSuggestions(cvId: string, targetRole?: string): Promise<ImprovementSuggestionsResponse> {
+    const response = await api.post(`/analysis/improve/${cvId}`, {
+      targetRole,
+    })
     return response.data
   },
 }
