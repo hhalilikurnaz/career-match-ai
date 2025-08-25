@@ -45,6 +45,7 @@ router.post("/upload", auth, upload.single("cv"), async (req, res) => {
       originalName: req.file.originalname,
       filePath: req.file.path,
       fileSize: req.file.size,
+      mimeType: req.file.mimetype, // Added mime type detection
     })
 
     await cv.save()
