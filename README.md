@@ -5,6 +5,10 @@ It not only compares a given CV to a job description for a similarity score, but
 
 ---
 
+  
+<img width="1434" height="760" alt="Ekran Resmi 2025-08-25 21 34 51" src="https://github.com/user-attachments/assets/a8ca414e-732e-4212-885a-ebae7567edb6" />
+
+
 ## Features
 
 - Upload or paste your **CV (resume)**
@@ -15,8 +19,6 @@ It not only compares a given CV to a job description for a similarity score, but
 - Modern **React + TypeScript frontend**
 - Fully deployable to **Vercel (client)** & **Render/Railway (server)**
   
-<img width="1434" height="760" alt="Ekran Resmi 2025-08-25 21 34 51" src="https://github.com/user-attachments/assets/a8ca414e-732e-4212-885a-ebae7567edb6" />
-
 ---
 
 ## Use Cases
